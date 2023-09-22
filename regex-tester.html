@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Regex</title>
+        <!-- Bootstrap css -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+              crossorigin="anonymous">
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                crossorigin="anonymous">
+        </script>
+    </head>
+    <script>
+        function FILTRAR(expressao = '') {
+            let texto = document.getElementById('texto').value;
+            console.log(expressao)
+            let expr = expressao ? new RegExp(document.getElementById('regex').value, 'g') : new RegExp(expressao, 'g');
+            console.log(expr)
+            document.getElementById('resultado').value = texto.replace(expr, '');
+        }
+    </script>
+    <body>
+        <div style="margin: 2rem auto; width: 50%; display: grid">
+            <h1 class="text-center">Textador de Regex</h1>
+            <label for="texto">Texto: </label>
+            <input type="text" name="texto" id="texto">
+            <label for="regex">Expressão regular: </label>
+            <input type="text" name="regex" id="regex">
+            <input class="btn btn-primary my-3" type="button" value="Filtrar" onclick="FILTRAR()">
+            <h3>Resultado:</h3>
+            <input type="text" name="" id="resultado">
+            <div class="my-5">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Caractere</th>
+                            <th>Significado</th>
+                            <th>check</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.</code></td>
+                            <td>
+                                <p>
+                                    (O ponto) corresponde um único caracter qualquer <em>exceto</em> os
+                                    caracteres de nova linha
+                                </p>
+                            </td>
+                            <td>
+                                <input type="checkbox" onchange="FILTRAR('.')">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>\d</code></td>
+                            <td>
+                                <p>
+                                    Corresponde um caractere de dígito no alfabeto basic Latin.
+                                    Equivalente <code>a [0-9]</code>.
+                                </p>
+                            </td>
+                            <td><input type="checkbox" onchange="FILTRAR('\d')"></td>
+                        </tr>
+                        <tr>
+                            <td><code>\D</code></td>
+                            <td>
+                                <p>
+                                    Corresponde qualquer caractere que não é um dígito no alfabeto basic
+                                    Latin. Equivalente a <code>[^0-9]</code>.
+                                </p>
+                            </td>
+                            <td><input type="checkbox" onchange="FILTRAR('D')"></td>
+                        </tr>
+                        <tr>
+                            <td><code>\w</code></td>
+                            <td>
+                                <p>
+                                    Corresponde qualquer caractere alfanumérico do alfabeto basic Latin,
+                                    incluindo o underline. Equivalente a <code>[A-Za-z0-9_]</code>.
+                                </p>
+                            </td>
+                            <td><input type="checkbox" onchange="FILTRAR('w')"></td>
+                        </tr>
+                        <tr>
+                            <td><code>\W</code></td>
+                            <td>
+                                <p>
+                                    Corresponde qualquer caractere que não é um alfanumérico do alfabeto
+                                    basic Latin. Equivalente a <code>[^A-Za-z0-9_]</code>.
+                                </p>
+                            </td>
+                            <td><input type="checkbox" onchange="FILTRAR('W')"></td>
+                        </tr>
+                        <tr>
+                            <td><code>\s</code></td>
+                            <td>
+                                <p>
+                                    Corresponde um único caractere de espaço em branco, incluindo espaço,
+                                    tabulação (tab), quebra de página, nova linha (LF) e outros espaços
+                                    Unicode. Equivalente a
+                                </p>
+                            </td>
+                            <td><input type="checkbox" onchange="FILTRAR('s')"></td>
+                        </tr>
+                        <tr>
+                            <td><code>\S</code></td>
+                            <td>
+                                <p>
+                                    Corresponde um único caractere que não seja um espaço em branco.
+                                    Equivalente a
+                                </p>
+                            </td>
+                            <td><input type="checkbox" onchange="FILTRAR('S')"></td>
+                        </tr>
+                        <tr>
+                            <td><code>\t</code></td>
+                            <td>Corresponde uma tabulação.</td>
+                            <td><input type="checkbox" onchange="FILTRAR('t')"></td>
+                        </tr>
+                        <tr>
+                            <td><code>\r</code></td>
+                            <td>Corresponde uma quebra de linha.</td>
+                            <td><input type="checkbox" onchange="FILTRAR('T')"></td>
+                        </tr>
+                        <tr>
+                            <td><code>\n</code></td>
+                            <td>Corresponde uma nova linha.</td>
+                            <td><input type="checkbox" onchange="FILTRAR('n')"></td>
+                        </tr>
+                        <tr>
+                            <td><code>\0</code></td>
+                            <td>Corresponde um caractere NUL. Não coloque outro dígito seguinte a esse.</td>
+                            <td><input type="checkbox" onchange="FILTRAR('0')"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
